@@ -24,7 +24,7 @@ class MemberModel extends Base
             'name' => $data['name'],
             'email' => $data['email'],
             'email_verified_at' => date('Y-m-d H:i:s'),
-            'password' => $data['password'],
+            'password' => md5($data['password']),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ];
@@ -43,6 +43,7 @@ class MemberModel extends Base
             return false;
         }
 
+        $data['password'] = md5($data['password']);
         $newId = $this->MemberEntity->add($data);
 
         if (!$newId)
@@ -58,7 +59,7 @@ class MemberModel extends Base
         $data = [
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => $data['password'],
+            'password' => $data['password'] ? md5($data['password']) : '',
             'updated_at' => date('Y-m-d H:i:s'),
             'id' => $data['id'],
         ];

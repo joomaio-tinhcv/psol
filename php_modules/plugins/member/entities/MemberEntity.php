@@ -84,9 +84,9 @@ class MemberEntity extends Entity
             return false;
         }
 
-        if(empty($data['password'])) 
+        if(empty($data['password']) && (!isset($data['id']) || !$data['id'])) 
         {
-            $this->error = "Email can't empty";
+            $this->error = "Password can't empty";
             return false;
         }
 
@@ -111,13 +111,17 @@ class MemberEntity extends Entity
         $row = [];
         $data = (array) $data;
         $fields = $this->getFields();
-        $skips = isset($data['id']) && $data['id'] ? ['created_at', 'email_verified_at', 'remember_token'] : ['id'];
+        $skips = isset($data['id']) && $data['id'] ? ['created_at', 'password' ,'email_verified_at', 'remember_token'] : ['id'];
         foreach ($fields as $key => $field)
         {
             if (!in_array($key, $skips))
             {
                 $default = isset($field['default']) ? $field['default'] : '';
                 $row[$key] = isset($data[$key]) ? $data[$key] : $default;
+            }
+            elseif($key == 'password' && $data[$key])
+            {
+                $row[$key] = $data[$key];
             }
         }
 
