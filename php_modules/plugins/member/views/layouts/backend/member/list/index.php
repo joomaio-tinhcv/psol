@@ -24,7 +24,6 @@
 											</th>
 											<th>Name</th>
 											<th>Email</th>
-											<th>Password</th>
 											<th>Created At</th>
 										</tr>
 									</thead>
