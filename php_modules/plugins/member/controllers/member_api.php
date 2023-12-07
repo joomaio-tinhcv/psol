@@ -68,9 +68,9 @@ class member_api extends ControllerMVVM
     {
         // get input data
         $data = [
-            'name' => $this->request->get('name', '', 'string'),
-            'email' => $this->request->get('email', '', 'string'),
-            'password' => $this->request->get('password', '', 'string')
+            'name' => $this->request->post->get('name', '', 'string'),
+            'email' => $this->request->post->get('email', '', 'string'),
+            'password' => $this->request->post->get('password', '', 'string')
         ];
 
         // validate input data
