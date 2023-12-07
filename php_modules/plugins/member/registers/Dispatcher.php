@@ -9,11 +9,14 @@ class Dispatcher
     public static function dispatch(IApp $app)
     {   
         // Check Permission
-        $app->plgLoad('permission', 'CheckSession');
+        if(!$app->get('restApi', ''))
+        {
+            $app->plgLoad('permission', 'CheckSession');
+        }
 
         $cName = $app->get('controller');
         $fName = $app->get('function');
-
+        
         $app->set('theme', $app->cf('adminTheme'));
 
         $controller = 'App\plugins\member\controllers\\'. $cName;

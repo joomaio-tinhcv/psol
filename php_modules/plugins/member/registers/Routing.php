@@ -18,7 +18,7 @@ class Routing
                 'permission' => [
                     'get' => ['member_manager', 'member_read'],
                     'post' => ['member_manager', 'member_read'],
-                    'delete' =>  ['member_manager', 'member_delete']
+                    'delete' =>  ['member_manager', 'member_delete'],
                 ],
             ],
             'member' => [
@@ -38,6 +38,7 @@ class Routing
                 'fnc' => [
                     'get' => 'member.member_api.list',
                 ],
+                'restApi' => true,
             ],
             'api/member' => [
                 'fnc' => [
@@ -46,7 +47,8 @@ class Routing
                     'put' => 'member.member_api.update',
                     'delete' => 'member.member_api.delete'
                 ],
-                'parameters' => ['id']
+                'parameters' => ['id'],
+                'restApi' => true,
             ],
         ];
     }
